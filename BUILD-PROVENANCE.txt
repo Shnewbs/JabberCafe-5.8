@@ -1,0 +1,17 @@
+JabberCafe rev22 — build provenance
+
+Engine: Godot 4.5.1.stable.official.f62fdbde1. Platform engine executables and Android
+native libraries are retained from the matching rev21 development packages. All
+runtime project content is freshly staged, packed and hash-verified. GDScript is
+validated by the engine and compiled when loaded; this is not an engine-source
+recompilation or a fresh Android SDK/Gradle build.
+
+Desktop: new JabberCafe.pck paired with the retained Windows x64 / Linux x64 engine.
+Android: project resources replaced, manifest updated to versionCode 120022 and
+same development certificate used to re-sign v1/v2. Launcher/native code unchanged.
+The inherited test keystore is unsuitable for production; no production key was used.
+
+Linux runtime and Mesa software rendering were executed in the build environment.
+Physical Windows/Android GPU, touch, battery, multi-monitor and audio-latency tests
+remain device checks. No iOS IPA, macOS/Xcode compilation, or store submission.
+See validation/rev000022/SUMMARY.txt for exact checks and package integrity evidence.

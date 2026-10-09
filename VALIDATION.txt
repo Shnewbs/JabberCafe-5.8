@@ -1,0 +1,86 @@
+JabberCafe 0.12.0-rev.000022 — release validation
+
+REGRESSION
+5,141 assertions passed across 23 suites. Every suite exited zero; the final
+strict-diagnostics run reported no engine ERROR diagnostics. The three new layout
+suites contain 182 assertions. Retained suites include two extra Interface-tab
+bounds checks. Current source logs are under validation/rev000022/regression.
+Older revision reports remain historical, not evidence for rev22.
+
+NEW COVERAGE
+Bounded preference migration, malformed/NaN rejection, persistent panel/graphics
+settings, independent panel/control/text geometry, six viewport geometries,
+corner/free docking, close/minimize/reopen without audio changes, widget layouts,
+marquee overflow/reduced motion, effective display scale, and renderer/UI separation.
+Tests exercise touch-local to viewport coordinate conversion, drag completion and
+locking, temporary window constraints without overwriting preferred dimensions,
+Studio/DJ window independence, reopen geometry, and frozen publication artist credit.
+
+Adaptive policy tests use controlled synthetic timing inputs to exercise warmup,
+sustained overload, bounded scale steps, cooldown, headroom recovery, CPU-limited
+cases, invalid/stall samples and limited fallback probes. They are correctness
+tests, not performance promises for a specific GPU or integrated graphics device.
+
+PACKAGED LINUX
+The actual release executable plus its NEW PCK passed the three layout suites
+(182 assertions), DJ release (107), saved-mix discovery (68), and integrated gameplay
+smoke scenario. These are repeated packaged checks, not added to the 5,141 total.
+No engine ERROR diagnostics in these runs.
+
+PACKAGES
+176 runtime resources matched staged bytes in the PCK and Android APK.
+All 48 audio clips decode; all 18 avatar variants load. Windows/Linux contain the
+same PCK. Platform executables and both Android native libraries are unchanged
+from the rev21 baseline; new GDScript is compiled by the engine when loaded.
+All distributed ZIP/APK archives pass CRC checks. Final hashes are distributed
+separately, not embedded as self-referential checksums.
+
+NATIVE RENDERING / DISPLAY
+16 actual screenshots were captured from the packaged Linux game through
+OpenGL/Mesa llvmpipe. Coverage includes all four music layouts, closed/reopen
+state, unlocked and alternate docking, Interface/Graphics options, DJ tracks,
+900x620/touch controls, 1080p, and 3840x2160 with explicit 2x UI density.
+Screenshots were visually inspected; they are software-rendered game captures.
+
+A separate normal-startup probe (self_test=false) measured render timings,
+selected a 1651x928 client window on a 1920x1080 desktop, and allowed Auto to
+adjust to 95% before a manual 60% Custom selection. Output dimensions, logical
+UI rectangle and all stored panel preferences were unchanged by that render-
+scale change. It is a software-renderer behavior check, not a hardware benchmark.
+The opaque Room-picker crop is pixel-identical at 60% and 100% rendering. A
+whole-header comparison also includes the 3D background and is not pixel-
+identical because reduced-resolution background colors/edges differ.
+
+ANDROID
+Version 0.12.0-rev.000022 / versionCode 120022. Existing package identity and
+inherited development signing identity retained. v1 jarsigner and the narrow
+RSA/v2 verifier passed; the v2 verifier rejected a modified-byte fixture.
+ZIP CRC and stored-entry alignment checks passed. The development certificate
+is self-signed and untimestamped; its expected verification warnings remain
+in the logs. This is a same-engine content rebuild, not a fresh Android SDK/
+Gradle build, production signing, or Play-store acceptance check.
+
+KNOWN DIAGNOSTICS AND DEVICE COVERAGE
+Mesa/Xvfb reports unsupported V-Sync mode changes. No engine ERROR/object-leak
+diagnostics appeared in the rev22 screenshot/probe path. The inherited rev19
+embedded-PopupMenu direct-hide teardown diagnostic is not claimed fixed; its
+separate historical reproducer remains in the source.
+No physical Windows/Android execution, touch/battery test, audio-interface
+latency measurement, real multi-monitor/DPI transition test, or representative
+low-end/maximum-density hardware benchmark was performed. Auto resolution is
+optional, bounded and manually overridable; target FPS is not a guarantee.
+No iOS IPA or macOS/Xcode export was produced. No remote repository was modified.
+
+SCOPE
+This revision changes the existing interface/display system and artist credit
+for newly prepared booth tracks. The 48 sound assets, avatar meshes, offline
+room storage, music composition format and DJ queue behavior are retained.
+Seven existing panels have independent profiles. There is no newly implemented
+chat panel, furniture-description panel, public account or multiplayer service.
+Private preview/Studio audio remain separate from listener Room controls.
+No automatic artist rewrite is applied to already-finished tracks.
+
+REPRODUCTION
+Use tools/run_tests.py --strict-diagnostics with matching Godot 4.5.1 runtime.
+See tools/release/README.txt for normal editor export and content-build steps.
+Capture/probe scripts and machine-readable results are included in the source.
